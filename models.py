@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float  # Importing Float here
+from sqlalchemy import Column, Integer, String, Float, Date  # Importing Float here
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -128,3 +128,15 @@ class TeamBoxScore(Base):
     opponent_team_alternate_color = Column(String(255), nullable=True)
     opponent_team_logo = Column(String(255), nullable=True)
     opponent_team_score = Column(Integer, nullable=True)
+
+class CbbPredictions(Base):
+    __tablename__ = "cbb_predictions"
+    no = Column(Integer, primary_key=True, index=True)
+    game_date = Column(Date, index=True, nullable=True)
+    game_id = Column(String(50), index=True, nullable=True)
+    away_team_full_name = Column(String(50), index=True, nullable=True)
+    home_team_full_name = Column(String(50), index=True, nullable=True)
+    prediction_alternate = Column(Float, index=True, nullable=True)
+    prediction_use = Column(Float, index=True, nullable=True)      
+    book_line = Column(Float, index=True, nullable=True)           
+    edge_v4 = Column(Float, index=True, nullable=True)             

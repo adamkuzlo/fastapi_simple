@@ -15,3 +15,12 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# Ensure tables are created if they don't exist
+def initialize_database():
+    """
+    Initialize the database by creating all tables defined in models
+    if they don't already exist.
+    """
+    from models import Base  # Import Base from models to register all models
+    Base.metadata.create_all(bind=engine)
